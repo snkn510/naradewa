@@ -7,11 +7,6 @@
 | email              | string  | null: false, unique: true |
 | encrypted_password | string  | null: false               |
 | nickname           | string  | null: false               |
-| avatar             | string  |                           |
-| job                | text    |                           |
-| language           | text    |                           |
-| hobby              | text    |                           |
-| profile            | text    |                           |
 
 ### Association
 
@@ -20,6 +15,21 @@
 - has_many :messages
 - has_many :entries
 - has_many :rooms, through: :messages, entries
+- has_one :profile
+
+## profiles テーブル
+
+| Column   | Type   | Options                   |
+| -------- | ------ | ------------------------- |
+| avatar   | string |                           |
+| job      | text   |                           |
+| language | text   |                           |
+| hobby    | text   |                           |
+| profile  | text   |                           |
+
+### Association
+
+- belong_to :user
 
 ## events テーブル
 
@@ -38,6 +48,7 @@
 
 - belongs_to :user
 - has_one :booking
+- has_many :rooms
 
 ## bookings テーブル
 
@@ -88,6 +99,7 @@
 - has_many :entries
 - has_many :messages
 - has_many :users, through: :entries, messages
+- belongs_to :event
 
 ## entries テーブル
 
